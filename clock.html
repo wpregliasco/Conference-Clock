@@ -1,0 +1,174 @@
+<!DOCTYPE html >
+<html>
+
+<head>
+    <title>Clock</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="identifier-url" content="http://wpregliasco.github.io/clock/" />
+    <meta name="title" content="clock" />
+    <meta name="description" content="Conference Clock" />
+    <meta name="author" content="Willy Pregliasco" />
+    <meta name="language" content="EN" />
+    <meta name="copyright" content="GNU 2018 Willy Pregliasco" />
+    <meta name="generator" content="Geany 1.31" />
+
+    <style>
+        .internal {
+        width: 90%;
+        height: 80%;
+        background-color: yellow;
+        font-size: 35vw;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align:center;
+        vertical-align:middle;
+        font-family:Arial; 
+        color:#ddffdd;
+        }
+        .container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        .internal, .container {
+            background-color: black;
+            cursor: none;
+        }
+    </style>
+</head>
+
+<body onload="load()">
+    
+    <div class="container">
+        <table class="internal">
+            <TR><TD id="clk">00:00</TD></TR>
+        </table>
+    </div>
+    
+<script>
+    window.outerHeight/window.devicePixelRatio
+    
+    // Start/Stop on click
+    var colorOn   = "#DDFFDD";
+    var colorStop = "#FFFF00";
+    var colorZero = "#FF0000";
+    var colorMid  = "#FFFF88";
+    var colorFin  = "#FF33FF";
+    
+    var onTime = 0;
+    window.onclick = click;
+    window.onkeypress = click;
+    function click() {
+        if (onTime==0) {
+            if (timer>0){ 
+                onTime=1;
+                var date = new Date();
+                t0 = t0 + (date.getTime() -tint); 
+            }
+            else {
+                var date = new Date();
+                t0 = date.getTime();
+                tint = t0;
+                timer = min0*60;
+                styleTime();
+                dispTime(timer);
+            }  
+        } 
+        else{ 
+            onTime=0;
+            var date = new Date();
+            tint = date.getTime(); 
+        }
+        
+    }
+    
+    // Read min/mid/end (url variable)
+    var t0;
+    var tint;
+    var min0;
+    var tMid;    
+    var tFin; 
+    var timer;
+    
+    function load() {
+        var date = new Date();
+        t0 = date.getTime();
+        tint = t0;
+        
+        var arr = document.URL.match(/min=([0-9]+)/);
+        min0 = arr ? arr[1] : 45;
+        timer = min0*60;
+        
+        arr = document.URL.match(/mid=([0-9]+)/);
+        tMid = arr ? arr[1] : 20;
+        tMid = tMid*60;
+        
+        arr = document.URL.match(/end=([0-9]+)/);
+        tFin = arr ? arr[1] : 5;
+        tFin = tFin*60;
+        
+        styleTime();
+        dispTime(timer);
+    }
+    
+    // Format time and display
+    function dispTime(t){
+        mins = Math.floor(t/60);
+        if (mins<10){mins = '0'+ mins;}
+        
+        secs = t - 60*mins ;
+        if (secs<10){secs = '0'+ secs;}
+        
+        ouStr = mins + ":" + secs;
+        document.getElementById('clk').innerHTML = ouStr;
+    }
+    
+    // Colors by time
+    function styleTime(){
+        var CLK = document.getElementById('clk');
+        
+        if (onTime==0){
+            CLK.style.color = colorStop;
+        }
+        else if (timer <= tMid && timer > tFin){
+            CLK.style.color = colorMid;
+        }
+        else if (timer <= tFin){
+            if (Math.abs(timer) % 2 == 1){
+                CLK.style.color = colorFin;
+            }
+            else{
+                CLK.style.color = colorZero;
+            }
+        }
+        else{
+        CLK.style.color = colorOn;    
+        }
+    }
+    
+    // Clock
+    setInterval(tick,1000);
+    function tick () {
+        var telap; 
+        var date = new Date();
+        if(onTime==1){
+            telap = (date.getTime()-t0)/1000;
+            timer = Math.round(min0*60-telap);
+            styleTime();
+            if (timer>=0){
+                dispTime(timer);
+            }
+        }
+        else{
+            styleTime();
+        }
+    }
+
+</script>
+</body>
+</html>
