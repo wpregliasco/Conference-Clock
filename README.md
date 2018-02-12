@@ -22,7 +22,7 @@ Clocks begins stopped. When stopped, numbers are brilliant yellow. You can stop 
 
 Clock countsdown up to zero, where remains blinking. You can stop in that state and with a new click, reset the count to the inicial value, ready for a new beginning. 
 
-With the default values, countdown begins with bright numbers, but when remains 20 minutes numbres change to light red, and when remains 5 minutes numbers change each second between red and magenta. 
+With the default values, countdown begins with bright numbers, but when remains 20 minutes numbers change to light red, and when remains 5 minutes numbers change each second between red and magenta. 
 
 ## Time values
 
