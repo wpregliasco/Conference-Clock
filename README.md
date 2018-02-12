@@ -31,15 +31,14 @@ You can set three times:
 * `mid`: change color time, in minutes (default:20)
 * `end`: final blinking time, in minutes (default:5)
 
-Theese values can be changed by three ways:
+These values can be changed by three ways:
 1. editting the file, 
 2. through variables in the URL:
 ```url
 http://clock.html?min=15&mid=5&end=1
-```
-If you omit any of the parameters, it wil take the default value.
-
-3. Using any of theese links:
+```  
+If you omit any of the parameters, it wil take the default value.  
+3. Using any of these links:  
 
 | link   | min | mid | end |
 |---|---:|---:|---:|
