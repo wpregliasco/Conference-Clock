@@ -31,7 +31,7 @@ You can set three times:
 * `mid`: change color time, in minutes (default:20)
 * `end`: final blinking time, in minutes (default:5)
 
-Tis values can be changed by three ways:
+Theese values can be changed by three ways:
 1. editting the file, 
 2. through variables in the URL:
 ```url
@@ -43,7 +43,7 @@ If you omit any of the parameters, it wil take the default value.
 
 | link   | min | mid | end |
 |---|---:|---:|---:|
-| [1 hora](http://wpregliasco.github.io/clock/clock.html?min=60&mid=30&end=10) | 60  | 30 | 10|
+| [1 hour](http://wpregliasco.github.io/clock/clock.html?min=60&mid=30&end=10) | 60  | 30 | 10|
 | [45 min](http://wpregliasco.github.io/clock/clock.html?min=45&mid=20&end=5)  | 45  | 20 | 5 |
 | [30 min](http://wpregliasco.github.io/clock/clock.html?min=30&mid=15&end=3)  | 30  | 15 | 3 |
 | [15 min](http://wpregliasco.github.io/clock/clock.html?min=15&mid=06&end=2)  | 15  | 6  | 2 |
