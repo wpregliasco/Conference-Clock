@@ -64,24 +64,22 @@
     window.onclick = click;
     window.onkeypress = click;
     function click() {
+        var date = new Date();
         if (onTime==0) {
             if (timer>0){ 
                 onTime=1;
-                var date = new Date();
                 t0 = t0 + (date.getTime() -tint); 
             }
             else {
-                var date = new Date();
                 t0 = date.getTime();
                 tint = t0;
                 timer = min0*60;
-                styleTime();
-                dispTime(timer);
             }  
+            styleTime();
+            dispTime(timer);
         } 
         else{ 
             onTime=0;
-            var date = new Date();
             tint = date.getTime(); 
         }
         
@@ -162,6 +160,9 @@
             styleTime();
             if (timer>=0){
                 dispTime(timer);
+            }
+            else{
+                dispTime(0);
             }
         }
         else{
